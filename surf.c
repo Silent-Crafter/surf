@@ -577,8 +577,6 @@ loaduri(Client *c, const Arg *a)
 	    g_str_has_prefix(uri, "file://")  ||
 	    g_str_has_prefix(uri, "about:")) {
 		url = g_strdup(uri);
-	} else if (g_str_has_prefix(uri, " ")) {
-	    	url = g_strdup_printf("%s%s", searchengine, uri + 1)
 	} else {
 		if (uri[0] == '~')
 			apath = untildepath(uri);
@@ -590,6 +588,7 @@ loaduri(Client *c, const Arg *a)
 		} else {
 //			url = g_strdup_printf("http://%s", uri);
 			url = parseuri(uri);
+			printf("\nreceived uri: %s\nparsed uri: %s\n", uri, url);
 		}
 		if (apath != uri)
 			free(apath);
@@ -2004,7 +2003,7 @@ parseuri(const gchar *uri)
 	guint i;
 	
 	for (i = 0; i < LENGTH(searchengines); i++) {
-		if (g_str_has_prefix(uri, searchengines[i].token))
+	    if (g_str_has_prefix(uri, searchengines[i].token))
 			return g_strdup_printf(searchengines[i].uri,
 				uri + strlen(searchengines[i].token));
 	}

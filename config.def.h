@@ -9,8 +9,8 @@ static char *cookiefile     = "~/.surf/cookies.txt";
 
 static SearchEngine searchengines[] = {
     { " ", "https://duckduckgo.com/?q=%s"  },
-    { "g ", "https://google.com/search?q="},
-    { "yt ", "https://www.youtube.com/results?search_query=" }
+    { "g?", "https://google.com/search?q=%s"},
+    { "yt?", "https://www.youtube.com/results?search_query=%s" }
 };
 
 /* Webkit default features */
@@ -35,7 +35,7 @@ static Parameter defconfig[ParameterLast] = {
 	[FrameFlattening]     =       { { .i = 0 },     },
 	[Geolocation]         =       { { .i = 0 },     },
 	[HideBackground]      =       { { .i = 0 },     },
-	[Inspector]           =       { { .i = 0 },     },
+	[Inspector]           =       { { .i = 1 },     },
 	[Java]                =       { { .i = 1 },     },
 	[JavaScript]          =       { { .i = 1 },     },
 	[KioskMode]           =       { { .i = 0 },     },
